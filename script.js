@@ -16,9 +16,9 @@ let closePopup = pageBody.querySelector('.edit-popup__close');
 console.log(pageBody);
 
 function popupOpenCloseHandler() {
-  shaddow.classList.toggle('states__action_hidden');
-  editPopup.classList.toggle('states__action_hidden');
-  pageBody.classList.toggle('states__action_overflow-hidden');
+  shaddow.classList.toggle('states_action-hidden');
+  editPopup.classList.toggle('states_action-hidden');
+  pageBody.classList.toggle('states_action-overflow-hidden');
 
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;

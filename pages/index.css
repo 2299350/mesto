@@ -29,9 +29,7 @@
 @import url(../blocks/places/__like/places__like.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
-@import url(../blocks/states/__action/states__action_hidden.css);
-@import url(../blocks/states/__action/states__action_overflow-hidden.css);
-
-
+@import url(../blocks/states/_action/states_action-hidden.css);
+@import url(../blocks/states/_action/states_action-overflow-hidden.css);
 
 
