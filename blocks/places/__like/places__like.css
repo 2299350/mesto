@@ -1,0 +1,18 @@
+.places__like {
+  min-width: 22px;
+  min-height: 19px;
+  background-image: url(../../../images/places-like.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  cursor: pointer;
+  transition: all 0.8s ease-in-out;
+}
+
+.places__like:hover {
+  background-image: url(../../../images/places-like-hover.svg);
+}
+
+.places__like:active {
+  background-image: url(../../../images/places-like-active.svg);
+}

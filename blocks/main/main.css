@@ -1,0 +1,15 @@
+.main {
+	position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 880px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+@media screen and (max-width: 879px) {
+  .main {
+    width: calc(100% - 38px);
+  }
+}
