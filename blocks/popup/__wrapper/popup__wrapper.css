@@ -1,4 +1,4 @@
-.edit-popup {
+.popup__wrapper {
   position: fixed;
   top: 50vh;
   left: 50%;
@@ -7,12 +7,10 @@
   width: 430px;
   background-color: #fff;
   border-radius: 10px;
-  opacity: 1;
-  z-index: 2;
 }
 
 @media screen and (max-width: 879px) {
-  .edit-popup {
+  .popup__wrapper {
     width: 282px;
   }
 }

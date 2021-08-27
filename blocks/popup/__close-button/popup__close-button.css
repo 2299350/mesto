@@ -1,4 +1,4 @@
-.edit-popup__close {
+.popup__close-button {
   position: absolute;
   top: -40px;
   right: -40px;
@@ -10,11 +10,12 @@
   background-size: 32px;
   cursor: pointer;
   background-color: transparent;
+  padding: 0;
   border: none;
 }
 
 @media screen and (max-width: 879px) {
-  .edit-popup__close {
+  .popup__close-button {
     top: -35px;
     right: 0;
     width: 20px;

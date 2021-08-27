@@ -1,4 +1,4 @@
-.edit-popup__header {
+.popup__header {
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-size: 24px;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 879px) {
-  .edit-popup__header {
+  .popup__header {
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 75px;

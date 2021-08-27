@@ -7,10 +7,13 @@
   background-size: 100%;
   cursor: pointer;
   transition: all 0.8s ease-in-out;
+  padding: 0;
+  border: none;
+  background-color: transparent;
 }
 
 .places__like:hover {
-  background-image: url(../../../images/places-like-hover.svg);
+  opacity: 0.5;
 }
 
 .places__like:active {

@@ -1,4 +1,4 @@
-.edit-popup__submit {
+.popup__submit {
   min-height: 50px;
   background-color: #000;
   color: #fff;
@@ -15,15 +15,14 @@
   transition: opacity 0.8s ease-in-out;
 }
 
-.edit-popup__submit:hover {
+.popup__submit:hover {
   opacity: .8;
 }
 
 @media screen and (max-width: 879px) {
-  .edit-popup__submit {
+  .popup__submit {
     margin-top: 15px;
     font-size: 14px;
     line-height: 17px;
   }
 }
-

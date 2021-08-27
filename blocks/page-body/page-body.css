@@ -1,3 +1,4 @@
 .page-body {
   display: block;
+  min-width: 320px;
 }
