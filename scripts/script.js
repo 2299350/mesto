@@ -14,14 +14,14 @@ let openPopup = pageBody.querySelector('.profile__edit-button');
 let closePopup = pageBody.querySelector('.popup__close-button');
 
 function popupOpenHandler() {
-  popup.classList.toggle('popup_hidden');
+  popup.classList.toggle('popup_shown');
 
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;
 }
 
 function popupCloseHandler() {
-  popup.classList.toggle('popup_hidden');
+  popup.classList.toggle('popup_shown');
 }
 
 function formSubmitHandler (evt) {
