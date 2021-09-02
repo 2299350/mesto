@@ -20,7 +20,8 @@
         <div class="profile__info">
           <div class="profile__name-container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button hover-action" aria-label="Открыть окно редактирования профиля"></button>
+            <button type="button" class="profile__button profile__edit-button hover-action"
+              aria-label="Открыть окно редактирования профиля"></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
         </div>
@@ -29,53 +30,6 @@
 
       <section class="places">
         <ul class="places__list">
-          <li class="places__item">
-            <img src="images/places-baikal.jpg" alt="Байкал" class="places__image">
-            <div class="places__name-container">
-              <h2 class="places__name">Байкал</h2>
-              <button type="button" class="places__like" aria-label="Лайкнуть место"></button>
-            </div>
-          </li>
-
-          <li class="places__item">
-            <img src="images/places-karachay.jpg" alt="Карачаево-Черкесия" class="places__image">
-            <div class="places__name-container">
-              <h2 class="places__name">Карачаево-Черкесия</h2>
-              <button type="button" class="places__like" aria-label="Лайкнуть место"></button>
-            </div>
-          </li>
-
-          <li class="places__item">
-            <img src="images/places-elbrus.jpg" alt="Гора Эльбрус" class="places__image">
-            <div class="places__name-container">
-              <h2 class="places__name">Гора Эльбрус</h2>
-              <button type="button" class="places__like" aria-label="Лайкнуть место"></button>
-            </div>
-          </li>
-
-          <li class="places__item">
-            <img src="images/places-sochi.jpg" alt="Сочи" class="places__image">
-            <div class="places__name-container">
-              <h2 class="places__name">Сочи</h2>
-              <button type="button" class="places__like" aria-label="Лайкнуть место"></button>
-            </div>
-          </li>
-
-          <li class="places__item">
-            <img src="images/places-sp.jpg" alt="Санкт-Петербург" class="places__image">
-            <div class="places__name-container">
-              <h2 class="places__name">Санкт-Петербург</h2>
-              <button type="button" class="places__like" aria-label="Лайкнуть место"></button>
-            </div>
-          </li>
-
-          <li class="places__item">
-            <img src="images/places-msk.jpg" alt="Москва" class="places__image">
-            <div class="places__name-container">
-              <h2 class="places__name">Москва</h2>
-              <button type="button" class="places__like" aria-label="Лайкнуть место"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -85,17 +39,62 @@
     </footer>
   </div>
 
-  <div class="popup">
-    <div class="popup__wrapper">
-      <form action="https://2299350.github.io/" method="get" class="popup__form" name="profile-form"> <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
-          <h2 class="popup__header">Редактировать профиль</h2>
-          <input class="popup__input" type="text" name="name" id="name-id" required>
-          <input class="popup__input" type="text" name="description" id="description-id" required>
-          <button type="submit" class="popup__submit">Сохранить</button>
+  <template id="card-template">
+    <li class="places__item">
+      <img src="" alt="" class="places__image">
+      <div class="places__name-container">
+        <h2 class="places__name"></h2>
+        <button type="button" class="places__like" aria-label="Лайкнуть место"></button>
+      </div>
+    </li>
+  </template>
+
+  <template id="image-popup-template">
+    <div class="popup">
+      <figure class="popup__wrapper popup__wrapper_image">
+        <img class="popup__image" src="" alt="">
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
+      <button type="button" class="popup__close-button hover-action"
+        aria-label="Закрыть окно редактирования профиля"></button>
+    </div>
+  </template>
+
+  <div class="popup popup_edit">
+    <div class="popup__wrapper popup__wrapper_edit">
+      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_edit" name="profile-form">
+        <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
+        <h2 class="popup__header">Редактировать профиль</h2>
+        <input class="popup__input" type="text" name="name" id="name-id" required>
+        <input class="popup__input" type="text" name="description" id="description-id" required>
+        <button type="submit" class="popup__submit">Сохранить</button>
       </form>
-      <button type="button" class="popup__close-button hover-action" aria-label="Закрыть окно редактирования профиля"></button>
+      <button type="button" class="popup__close-button hover-action"
+        aria-label="Закрыть окно редактирования профиля"></button>
     </div>
   </div>
+
+  <div class="popup popup_add">
+    <div class="popup__wrapper popup__wrapper_add">
+      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_add" name="profile-form">
+        <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
+        <h2 class="popup__header">Новое место</h2>
+        <input class="popup__input" placeholder="Название" type="text" name="place" id="place-id" required>
+        <input class="popup__input" placeholder="Ссылка на картинку" type="url" name="url" id="url-id" required>
+        <button type="submit" class="popup__submit">Создать</button>
+      </form>
+      <button type="button" class="popup__close-button hover-action"
+        aria-label="Закрыть окно редактирования профиля"></button>
+    </div>
+  </div>
+
+  <div class="popup">
+    <figure class="popup__wrapper popup__wrapper_image">
+      <img class="popup__image" src="" alt="">
+      <figcaption class="popup__caption"></figcaption>
+    </figure>
+  </div>
+
 
   <script src="scripts/script.js"></script>
 </body>

@@ -38,3 +38,64 @@ function formSubmitHandler (evt) {
 popupForm.addEventListener('submit', formSubmitHandler);
 openPopup.addEventListener('click', popupOpenHandler);
 closePopup.addEventListener('click', popupCloseHandler);
+
+// Добавление карточек на страницу
+
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const cardTemplate = document.querySelector('#card-template').content;
+const placesList = document.querySelector('.places__list');
+console.log(cardTemplate);
+
+function renderCards(cards = initialCards) {
+
+  cards.forEach(function (element) {
+    const cardElement = cardTemplate.cloneNode(true);
+
+    cardElement.querySelector('.places__image').src = element.link;
+    cardElement.querySelector('.places__image').alt = element.name;
+    cardElement.querySelector('.places__name').textContent = element.name;
+
+    placesList.append(cardElement);
+  })
+}
+
+function addCard(name, link) {
+  const cardElement = cardTemplate.cloneNode(true);
+
+  cardElement.querySelector('.places__image').src = link;
+  cardElement.querySelector('.places__image').alt = name;
+  cardElement.querySelector('.places__name').textContent = name;
+
+  placesList.prepend(cardElement);
+}
+
+renderCards();
+addCard('Камчатка', 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg');
+
