@@ -24,13 +24,13 @@ function popupCloseHandler() {
   popup.classList.toggle('popup_shown');
 }
 
-function formSubmitHandler (evt) {
-    evt.preventDefault();
+function formSubmitHandler(evt) {
+  evt.preventDefault();
 
-    nameField.textContent = nameInput.value;
-    jobField.textContent = jobInput.value;
+  nameField.textContent = nameInput.value;
+  jobField.textContent = jobInput.value;
 
-    popupCloseHandler()
+  popupCloseHandler()
 }
 
 // Прикрепляем обработчик к форме:
@@ -40,8 +40,6 @@ openPopup.addEventListener('click', popupOpenHandler);
 closePopup.addEventListener('click', popupCloseHandler);
 
 // Добавление карточек на страницу
-
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -71,7 +69,6 @@ const initialCards = [
 
 const cardTemplate = document.querySelector('#card-template').content;
 const placesList = document.querySelector('.places__list');
-console.log(cardTemplate);
 
 function renderCards(cards = initialCards) {
 
@@ -98,4 +95,22 @@ function addCard(name, link) {
 
 renderCards();
 addCard('Камчатка', 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg');
+
+
+//Лайки
+function likeToggle() {
+  const placesLike = document.querySelectorAll(".places__like");
+
+  placesLike.forEach(like => {
+    like.addEventListener("click", likeDislike, false);
+  });
+
+  function likeDislike() {
+    this.classList.toggle('places__like_active');
+  }
+}
+
+likeToggle();
+
+
 
