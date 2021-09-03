@@ -111,6 +111,3 @@ function likeToggle() {
 }
 
 likeToggle();
-
-
-

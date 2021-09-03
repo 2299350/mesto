@@ -30,6 +30,7 @@
 @import url(../blocks/places/__name/places__name.css);
 @import url(../blocks/places/__like/places__like.css);
 @import url(../blocks/places/__like/_active/places__like_active.css);
+@import url(../blocks/places/__remove/places__remove.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
 

@@ -20,12 +20,12 @@
         <div class="profile__info">
           <div class="profile__name-container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__button profile__edit-button hover-action"
-              aria-label="Открыть окно редактирования профиля"></button>
+            <button type="button" class="profile__edit-button open-button hover-action"
+              aria-label="Открыть окно редактирования профиля" id="edit-button-id"></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__add-button hover-action" aria-label="Добавить место"></button>
+        <button type="button" class="profile__add-button open-button hover-action" aria-label="Добавить место"></button>
       </section>
 
       <section class="places">
@@ -41,6 +41,7 @@
 
   <template id="card-template">
     <li class="places__item">
+      <button type="button" class="places__remove" aria-label="Удалить место"></button>
       <img src="" alt="" class="places__image">
       <div class="places__name-container">
         <h2 class="places__name"></h2>
