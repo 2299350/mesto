@@ -99,7 +99,7 @@ addCard('Камчатка', 'https://pictures.s3.yandex.net/frontend-developer/c
 
 //Лайки
 function likeToggle() {
-  const placesLike = document.querySelectorAll(".places__like");
+  const placesLike = pageBody.querySelectorAll(".places__like");
 
   placesLike.forEach(like => {
     like.addEventListener("click", likeDislike, false);
@@ -111,3 +111,18 @@ function likeToggle() {
 }
 
 likeToggle();
+
+//Удаление карточки
+
+function placeRemove() {
+  const placesRemove = pageBody.querySelectorAll(".places__remove");
+  let placesList = Array.from(pageBody.querySelectorAll(".places__item"));
+
+  for (let i = 0; i < placesRemove.length; i++) {
+    placesRemove[i].addEventListener("click", function () {
+      placesList[i].remove();
+    });
+  }
+}
+
+placeRemove();
