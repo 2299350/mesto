@@ -20,12 +20,12 @@
         <div class="profile__info">
           <div class="profile__name-container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button open-button hover-action"
-              aria-label="Открыть окно редактирования профиля" id="edit-button-id"></button>
+            <button type="button" class="profile__edit-button hover-action"
+              aria-label="Открыть окно редактирования профиля"></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__add-button open-button hover-action" aria-label="Добавить место"></button>
+        <button type="button" class="profile__add-button hover-action" aria-label="Добавить место"></button>
       </section>
 
       <section class="places">
@@ -61,9 +61,9 @@
     </div>
   </template>
 
-  <div class="popup popup_edit">
+  <div class="popup" id="edit-popup-id">
     <div class="popup__wrapper popup__wrapper_edit">
-      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_edit" name="profile-form">
+      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_edit" name="profile-form" id="profile-form-id">
         <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
         <h2 class="popup__header">Редактировать профиль</h2>
         <input class="popup__input" type="text" name="name" id="name-id" required>
@@ -75,9 +75,9 @@
     </div>
   </div>
 
-  <div class="popup popup_add">
+  <div class="popup" id="add-popup-id">
     <div class="popup__wrapper popup__wrapper_add">
-      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_add" name="profile-form">
+      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_add" name="card-form" id="card-form-id">
         <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
         <h2 class="popup__header">Новое место</h2>
         <input class="popup__input" placeholder="Название" type="text" name="place" id="place-id" required>
@@ -85,17 +85,21 @@
         <button type="submit" class="popup__submit">Создать</button>
       </form>
       <button type="button" class="popup__close-button hover-action"
-        aria-label="Закрыть окно редактирования профиля"></button>
+        aria-label="Закрыть окно добавления карточки"></button>
     </div>
   </div>
 
-  <div class="popup">
+  <div class="popup" id="image-popup-id">
     <figure class="popup__wrapper popup__wrapper_image">
-      <img class="popup__image" src="" alt="">
-      <figcaption class="popup__caption"></figcaption>
+      <button class="popup__image-button">
+        <img class="popup__image" src="https://s1.1zoom.ru/big0/596/Evening_Forests_Mountains_Firewatch_Campo_Santo_549147_1280x720.jpg" alt="">
+      </button>
+      <figcaption class="popup__caption">Подпись к картинке</figcaption>
+      <button type="button" class="popup__close-button hover-action"
+        aria-label="Закрыть изображение"></button>
     </figure>
+    </div>
   </div>
-
 
   <script src="scripts/script.js"></script>
 </body>
