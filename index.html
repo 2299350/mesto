@@ -41,7 +41,8 @@
 
   <div class="popup" id="edit-popup-id">
     <div class="popup__wrapper">
-      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_edit" name="profile-form" id="profile-form-id">
+      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_edit" name="profile-form"
+        id="profile-form-id">
         <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
         <h2 class="popup__header">Редактировать профиль</h2>
         <input class="popup__input" type="text" name="name" id="name-id" required>
@@ -55,7 +56,8 @@
 
   <div class="popup" id="add-popup-id">
     <div class="popup__wrapper">
-      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_add" name="card-form" id="card-form-id">
+      <form action="https://2299350.github.io/" method="get" class="popup__form popup__form_add" name="card-form"
+        id="card-form-id">
         <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
         <h2 class="popup__header">Новое место</h2>
         <input class="popup__input" placeholder="Название" type="text" name="place" id="place-id" required>
@@ -68,13 +70,15 @@
   </div>
 
   <div class="popup" id="image-popup-id">
-    <figure class="popup__wrapper popup__wrapper_image">
-      <img class="popup__image" src="https://s1.1zoom.ru/big0/596/Evening_Forests_Mountains_Firewatch_Campo_Santo_549147_1280x720.jpg" alt="">
-      <figcaption class="popup__caption"></figcaption>
-      <button type="button" class="popup__close-button hover-action"
-        aria-label="Закрыть изображение"></button>
-    </figure>
+    <div class="popup__container">
+      <figure class="popup__wrapper popup__wrapper_image">
+        <img class="popup__image"
+          src="" alt="">
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
+      <button type="button" class="popup__close-button hover-action" aria-label="Закрыть изображение"></button>
     </div>
+
   </div>
 
   <template id="card-template">
