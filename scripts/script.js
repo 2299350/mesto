@@ -144,12 +144,10 @@ items.forEach(item => {
   initCard(item);
 });
 
-
 function initCard(el) {
   let placesLike = el.querySelector('.places__like');
   let placesRemove = el.querySelector('.places__remove');
   let placesImage = el.querySelector('.popup__image-button');
-
 
   placesRemove.addEventListener("click", function() {
     el.remove();
@@ -167,6 +165,7 @@ function initCard(el) {
     imagePopup.classList.toggle('popup_shown');
     imagePopup.querySelector('.popup__image').src = el.querySelector(".places__image").src;
     imagePopup.querySelector('.popup__caption').textContent = el.querySelector(".places__name").textContent;
+    imagePopup.querySelector('.popup__image').alt = el.querySelector(".places__name").textContent;
   }
 }
 
