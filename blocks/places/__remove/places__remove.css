@@ -13,6 +13,7 @@
   padding: 0;
   border: none;
   background-color: transparent;
+  z-index: 1;
 }
 
 .places__remove:hover {

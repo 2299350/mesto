@@ -42,7 +42,9 @@
   <template id="card-template">
     <li class="places__item">
       <button type="button" class="places__remove" aria-label="Удалить место"></button>
-      <img src="" alt="" class="places__image">
+      <button class="popup__image-button">
+        <img src="" alt="" class="places__image">
+      </button>
       <div class="places__name-container">
         <h2 class="places__name"></h2>
         <button type="button" class="places__like" aria-label="Лайкнуть место"></button>
@@ -90,11 +92,9 @@
   </div>
 
   <div class="popup" id="image-popup-id">
-    <figure class="popup__wrapper popup__wrapper_image">
-      <button class="popup__image-button">
-        <img class="popup__image" src="https://s1.1zoom.ru/big0/596/Evening_Forests_Mountains_Firewatch_Campo_Santo_549147_1280x720.jpg" alt="">
-      </button>
-      <figcaption class="popup__caption">Подпись к картинке</figcaption>
+    <figure class="popup__wrapper_image">
+      <img class="popup__image" src="https://s1.1zoom.ru/big0/596/Evening_Forests_Mountains_Firewatch_Campo_Santo_549147_1280x720.jpg" alt="">
+      <figcaption class="popup__caption"></figcaption>
       <button type="button" class="popup__close-button hover-action"
         aria-label="Закрыть изображение"></button>
     </figure>

@@ -1,6 +1,5 @@
 let pageBody = document.querySelector('.page-body');
 
-
 // Добавление карточек на страницу
 const initialCards = [
   {
@@ -52,42 +51,11 @@ function addCard(name, link) {
   cardElement.querySelector('.places__image').alt = name;
   cardElement.querySelector('.places__name').textContent = name;
 
-  debugger
   initCard(cardElement.querySelector('.places__item'));
   placesList.prepend(cardElement);
 }
 
 renderCards();
-
-//Лайки
-/*let placesLike = document.querySelectorAll(".places__like");
-
-function likeToggle() {
-  placesLike.forEach(like => {
-    like.addEventListener("click", likeDislike, false);
-  });
-
-  function likeDislike() {
-    this.classList.toggle('places__like_active');
-  }
-}
-
-likeToggle();*/
-
-//Удаление карточки
-let placesRemove = pageBody.querySelectorAll(".places__remove");
-
-function placeRemove() {
-  let placesList = pageBody.querySelectorAll(".places__item");
-
-  for (let i = 0; i < placesRemove.length; i++) {
-    placesRemove[i].addEventListener("click", function () {
-      placesList[i].remove();
-    });
-  }
-}
-
-placeRemove();
 
 //Обработка Edit popup
 let editPopup = pageBody.querySelector('#edit-popup-id');
@@ -157,22 +125,52 @@ function addFormSubmitHandler(evt) {
 
 addPopupForm.addEventListener('submit', addFormSubmitHandler);
 openAddPopup.addEventListener('click', addPopupOpenHandler);
-closeEditPopup.addEventListener('click', addPopupCloseHandler);
+closeAddPopup.addEventListener('click', addPopupCloseHandler);
 
-///
+//Лисенеры для карточек
+let imagePopup = pageBody.querySelector('#image-popup-id');
+let closeImagePopup = imagePopup.querySelector('.popup__close-button');
+
+closeImagePopup.addEventListener('click', function() {
+  imagePopup.classList.toggle('popup_shown');
+});
+
+function ImagePopupCloseHandler() {
+
+}
+
 let items = document.querySelectorAll(".places__item");
 items.forEach(item => {
   initCard(item);
 });
 
-function initCard(el) {
-  let placesLike = el.querySelectorAll(".places__like");
 
-  placesLike.forEach(like => {
-    like.addEventListener("click", likeDislike, false);
+function initCard(el) {
+  let placesLike = el.querySelector('.places__like');
+  let placesRemove = el.querySelector('.places__remove');
+  let placesImage = el.querySelector('.popup__image-button');
+
+
+  placesRemove.addEventListener("click", function() {
+    el.remove();
   });
+
+  placesLike.addEventListener("click", likeDislike);
 
   function likeDislike() {
     this.classList.toggle('places__like_active');
   }
+
+  placesImage.addEventListener("click", openImagePopup);
+
+  function openImagePopup() {
+    imagePopup.classList.toggle('popup_shown');
+    imagePopup.querySelector('.popup__image').src = el.querySelector(".places__image").src;
+    imagePopup.querySelector('.popup__caption').textContent = el.querySelector(".places__name").textContent;
+  }
 }
+
+
+
+
+
