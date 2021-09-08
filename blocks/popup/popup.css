@@ -2,7 +2,7 @@
   position: fixed;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s ease-in-out; /* Не стал менять visibility, потому что при таком подходе получается неприятный эффект при закрытии окна https://recordit.co/LMvYF9k58e */
+  transition: visibility 0.5s, opacity 0.5s ease-in-out; /* Не стал менять visibility, потому что при таком подходе получается неприятный эффект при закрытии окна https://recordit.co/LMvYF9k58e */
   align-items: center;
   justify-content: center;
   top: 0;

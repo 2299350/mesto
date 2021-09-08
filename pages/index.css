@@ -5,6 +5,7 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__wrapper/popup__wrapper.css);
+@import url(../blocks/popup/__flex/popup__flex.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__wrapper/_image/popup__wrapper_image.css);
 @import url(../blocks/popup/__image/popup__image.css);
