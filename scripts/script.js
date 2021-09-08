@@ -1,4 +1,25 @@
-let pageBody = document.querySelector('.page-body');
+const pageBody = document.querySelector('.page-body');
+
+const editPopup = pageBody.querySelector('#edit-popup-id');
+const addPopup = pageBody.querySelector('#add-popup-id');
+const imagePopup = pageBody.querySelector('#image-popup-id');
+
+const editPopupForm = editPopup.querySelector('#profile-form-id');
+const addPopupForm = addPopup.querySelector('#card-form-id');
+
+const openAddPopup = pageBody.querySelector('.profile__add-button');
+const openEditPopup = pageBody.querySelector('.profile__edit-button');
+
+const closeEditPopup = editPopup.querySelector('.popup__close-button');
+const closeAddPopup = addPopup.querySelector('.popup__close-button');
+const closeImagePopup = imagePopup.querySelector('.popup__close-button');
+
+const cardTemplate = document.querySelector('#card-template').content;
+const placesList = document.querySelector('.places__list');
+
+const popupImg = imagePopup.querySelector('.popup__image');
+const popupCaption = imagePopup.querySelector('.popup__caption');
+
 
 // Добавление карточек на страницу
 const initialCards = [
@@ -28,23 +49,17 @@ const initialCards = [
   }
 ];
 
-const cardTemplate = document.querySelector('#card-template').content;
-const placesList = document.querySelector('.places__list');
-
+// Создаем карточки из массива
 function renderCards(cards = initialCards) {
-
-  cards.forEach(function (element) {
-    const cardElement = cardTemplate.cloneNode(true);
-
-    cardElement.querySelector('.places__image').src = element.link;
-    cardElement.querySelector('.places__image').alt = element.name;
-    cardElement.querySelector('.places__name').textContent = element.name;
-
-    placesList.append(cardElement);
+  cards.reverse().forEach(function (element) {
+    addCard(createCard(element.name, element.link));
   })
 }
 
-function addCard(name, link) {
+renderCards();
+
+// Создаем отдельную карточку
+function createCard(name, link) {
   const cardElement = cardTemplate.cloneNode(true);
 
   cardElement.querySelector('.places__image').src = link;
@@ -52,102 +67,19 @@ function addCard(name, link) {
   cardElement.querySelector('.places__name').textContent = name;
 
   initCard(cardElement.querySelector('.places__item'));
+  return cardElement;
+}
+
+// Добавляем отдельную карточку
+function addCard(cardElement) {
   placesList.prepend(cardElement);
 }
 
-renderCards();
-
-//Обработка Edit popup
-let editPopup = pageBody.querySelector('#edit-popup-id');
-let editPopupForm = editPopup.querySelector('#profile-form-id');
-
-let openEditPopup = pageBody.querySelector('.profile__edit-button');
-let closeEditPopup = editPopup.querySelector('.popup__close-button');
-
-let nameInput = editPopupForm.querySelector('#name-id');
-let jobInput = editPopupForm.querySelector('#description-id');
-
-let nameField = pageBody.querySelector('.profile__name');
-let jobField = pageBody.querySelector('.profile__description');
-
-function editPopupOpenHandler() {
-  editPopup.classList.toggle('popup_shown');
-
-  nameInput.value = nameField.textContent;
-  jobInput.value = jobField.textContent;
-}
-
-function editPopupCloseHandler() {
-  editPopup.classList.toggle('popup_shown');
-}
-
-function editFormSubmitHandler(evt) {
-  evt.preventDefault();
-
-  nameField.textContent = nameInput.value;
-  jobField.textContent = jobInput.value;
-
-  editPopupCloseHandler()
-}
-
-editPopupForm.addEventListener('submit', editFormSubmitHandler);
-openEditPopup.addEventListener('click', editPopupOpenHandler);
-closeEditPopup.addEventListener('click', editPopupCloseHandler);
-
-//Обработка Add popup
-let addPopup = pageBody.querySelector('#add-popup-id');
-let addPopupForm = addPopup.querySelector('#card-form-id');
-
-let openAddPopup = pageBody.querySelector('.profile__add-button');
-let closeAddPopup = addPopup.querySelector('.popup__close-button');
-
-let placeInput = addPopupForm.querySelector('#place-id');
-let urlInput = addPopupForm.querySelector('#url-id');
-
-let placeField = pageBody.querySelector('.places__name');
-let urlField = pageBody.querySelector('.places__image');
-
-function addPopupOpenHandler() {
-  addPopup.classList.toggle('popup_shown');
-}
-
-function addPopupCloseHandler() {
-  addPopup.classList.toggle('popup_shown');
-}
-
-function addFormSubmitHandler(evt) {
-  evt.preventDefault();
-
-  addCard(placeInput.value, urlInput.value);
-
-  addPopupCloseHandler();
-}
-
-addPopupForm.addEventListener('submit', addFormSubmitHandler);
-openAddPopup.addEventListener('click', addPopupOpenHandler);
-closeAddPopup.addEventListener('click', addPopupCloseHandler);
-
 //Лисенеры для карточек
-let imagePopup = pageBody.querySelector('#image-popup-id');
-let closeImagePopup = imagePopup.querySelector('.popup__close-button');
-
-closeImagePopup.addEventListener('click', function() {
-  imagePopup.classList.toggle('popup_shown');
-});
-
-function ImagePopupCloseHandler() {
-
-}
-
-let items = document.querySelectorAll(".places__item");
-items.forEach(item => {
-  initCard(item);
-});
-
 function initCard(el) {
-  let placesLike = el.querySelector('.places__like');
-  let placesRemove = el.querySelector('.places__remove');
-  let placesImage = el.querySelector('.popup__image-button');
+  const placesLike = el.querySelector('.places__like');
+  const placesRemove = el.querySelector('.places__remove');
+  const placesImage = el.querySelector('.popup__image-button');
 
   placesRemove.addEventListener("click", function() {
     el.remove();
@@ -159,17 +91,74 @@ function initCard(el) {
     this.classList.toggle('places__like_active');
   }
 
-  placesImage.addEventListener("click", openImagePopup);
+  placesImage.addEventListener("click", () => imagePopupOpenHandler(el));
+}
 
-  function openImagePopup() {
-    imagePopup.classList.toggle('popup_shown');
-    imagePopup.querySelector('.popup__image').src = el.querySelector(".places__image").src;
-    imagePopup.querySelector('.popup__caption').textContent = el.querySelector(".places__name").textContent;
-    imagePopup.querySelector('.popup__image').alt = el.querySelector(".places__name").textContent;
-  }
+// Открытие попапа
+function popupOpener(popup) {
+  popup.classList.add('popup_shown');
+}
+
+// Закрытие попапа
+function popupCloser(popup) {
+  popup.classList.remove('popup_shown');
+}
+
+//Обработка Edit popup
+const nameInput = editPopupForm.querySelector('#name-id');
+const jobInput = editPopupForm.querySelector('#description-id');
+
+const nameField = pageBody.querySelector('.profile__name');
+const jobField = pageBody.querySelector('.profile__description');
+
+function editPopupOpenHandler() {
+  popupOpener(editPopup);
+
+  nameInput.value = nameField.textContent;
+  jobInput.value = jobField.textContent;
 }
 
 
+function editFormSubmitHandler(evt) {
+  evt.preventDefault();
+
+  nameField.textContent = nameInput.value;
+  jobField.textContent = jobInput.value;
+
+  popupCloser(editPopup);
+}
+
+editPopupForm.addEventListener('submit', editFormSubmitHandler);
+openEditPopup.addEventListener('click', editPopupOpenHandler);
+closeEditPopup.addEventListener('click', () => popupCloser(editPopup));
 
 
+//Обработка Add popup
+const placeInput = addPopupForm.querySelector('#place-id');
+const urlInput = addPopupForm.querySelector('#url-id');
 
+const placeField = pageBody.querySelector('.places__name');
+const urlField = pageBody.querySelector('.places__image');
+
+function addFormSubmitHandler(evt) {
+  evt.preventDefault();
+
+  addCard(createCard(placeInput.value, urlInput.value));
+
+  popupCloser(addPopup);
+}
+
+addPopupForm.addEventListener('submit', addFormSubmitHandler);
+openAddPopup.addEventListener('click', () => popupOpener(addPopup));
+closeAddPopup.addEventListener('click', () => popupCloser(addPopup));
+
+
+// Обработка Image popup
+function imagePopupOpenHandler(el) {
+  popupOpener(imagePopup);
+  popupImg.src = el.querySelector(".places__image").src;
+  popupCaption.textContent = el.querySelector(".places__name").textContent;
+  popupImg.alt = el.querySelector(".places__name").textContent;
+}
+
+closeImagePopup.addEventListener('click', () => popupCloser(imagePopup));
