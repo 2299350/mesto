@@ -113,6 +113,14 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+// Закрытие попапа по клику вне области
+document.addEventListener('click', function(evt) {
+  if (evt.target.classList.contains('popup__flex')) {
+    const currentPopup = evt.target.closest('.popup');
+    popupCloser(currentPopup);
+  }
+});
+
 //Обработка Edit popup
 const nameInput = editPopupForm.querySelector('#name-id');
 const jobInput = editPopupForm.querySelector('#description-id');
