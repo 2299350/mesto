@@ -104,6 +104,15 @@ function popupCloser(popup) {
   popup.classList.remove('popup_shown');
 }
 
+// Закрытие попапа по Escape
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    popupCloser(addPopup);
+    popupCloser(imagePopup);
+    popupCloser(editPopup);
+  }
+});
+
 //Обработка Edit popup
 const nameInput = editPopupForm.querySelector('#name-id');
 const jobInput = editPopupForm.querySelector('#description-id');
