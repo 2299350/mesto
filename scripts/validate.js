@@ -21,11 +21,32 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
   }
 };
 
-const toggleButtonState = () => {
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some(inputElement => {
+    return !inputElement.validity.valid;
+  });
 };
 
-const setEventListeners = (formElement, inputErrorClass, errorClass, inputSelector) => {
+const disableSubmitButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.add(inactiveButtonClass);
+};
+
+const enableSubmitButton = (buttonElement, inactiveButtonClass) => {
+  buttonElement.classList.remove(inactiveButtonClass);
+};
+
+const toggleButtonState = (formElement, inputList, submitButtonSelector, inactiveButtonClass) => {
+  const buttonElement = formElement.querySelector(submitButtonSelector);
+
+  if (hasInvalidInput(inputList)) {
+    disableSubmitButton(buttonElement, inactiveButtonClass);
+  } else {
+    enableSubmitButton(buttonElement, inactiveButtonClass);
+  }
+};
+
+const setEventListeners = (formElement, inputErrorClass, errorClass, inputSelector, submitButtonSelector, inactiveButtonClass) => {
   formElement.addEventListener('submit', (event) => {
     event.preventDefault();
   });
@@ -38,7 +59,7 @@ const setEventListeners = (formElement, inputErrorClass, errorClass, inputSelect
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, inputErrorClass, errorClass);
       console.log(inputElement);
-      toggleButtonState();
+      toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
     });
   });
 };
@@ -47,7 +68,7 @@ const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   console.log(document.querySelectorAll(config.formSelector));
   formList.forEach(formElement => {
-    setEventListeners(formElement, config.inputErrorClass, config.errorClass, config.inputSelector);
+    setEventListeners(formElement, config.inputErrorClass, config.errorClass, config.inputSelector, config.submitButtonSelector, config.inactiveButtonClass);
     console.log(formElement);
   });
 };
