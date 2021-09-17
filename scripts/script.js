@@ -137,6 +137,7 @@ function editPopupOpenHandler() {
 
 
 function editFormSubmitHandler(evt) {
+  debugger
   evt.preventDefault();
 
   nameField.textContent = nameInput.value;
