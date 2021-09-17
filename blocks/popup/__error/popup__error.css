@@ -5,8 +5,9 @@
   font-size: 12px;
   line-height: 15px;
   color: #FF0000;
-  margin-top: -25px;
+  display: none;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.2s, opacity 0.2s ease-in-out;
+  padding-top: 5px;
 }
