@@ -1,6 +1,7 @@
 .popup__form {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   margin-top: 34px;
   margin-left: 36px;
   margin-right: 36px;

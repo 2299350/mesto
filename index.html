@@ -47,8 +47,10 @@
           <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
           <h2 class="popup__header">Редактировать профиль</h2>
           <input class="popup__input" type="text" name="name" id="name-id" required>
+          <span class="popup__error" id="name-id-error"></span>
           <input class="popup__input" type="text" name="description" id="description-id" required>
-          <button type="submit" class="popup__submit">Сохранить</button>
+          <span class="popup__error" id="description-id-error"></span>
+          <button type="submit" class="popup__submit" disabled>Сохранить</button>
         </form>
         <button type="button" class="popup__close-button hover-action"
           aria-label="Закрыть окно редактирования профиля"></button>
@@ -63,8 +65,10 @@
           id="card-form-id">
           <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
           <h2 class="popup__header">Новое место</h2>
-          <input class="popup__input" placeholder="Название" type="text" name="place" id="place-id" required>
-          <input class="popup__input" placeholder="Ссылка на картинку" type="url" name="url" id="url-id" required>
+          <input class="popup__input" placeholder="Название" type="text" name="place" id="place-id"  minlength="2" maxlength="30" required>
+          <span class="popup__error" id="place-id-error">Вы пропустили это поле. Вы пропустили это поле. Вы пропустили это поле. Вы пропустили это поле.</span>
+          <input class="popup__input" placeholder="Ссылка на картинку" type="url" name="url" id="url-id" minlength="2" required>
+          <span class="popup__error" id="url-id-error">Вы пропустили это поле.</span>
           <button type="submit" class="popup__submit">Создать</button>
         </form>
         <button type="button" class="popup__close-button hover-action"
@@ -100,6 +104,7 @@
   </template>
 
   <script src="scripts/script.js"></script>
+  <script src="scripts/validate.js"></script>
 </body>
 
 </html>
