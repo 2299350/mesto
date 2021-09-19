@@ -20,6 +20,17 @@ const placesList = document.querySelector('.places__list');
 const popupImg = imagePopup.querySelector('.popup__image');
 const popupCaption = imagePopup.querySelector('.popup__caption');
 
+const nameInput = editPopupForm.querySelector('#name-id');
+const jobInput = editPopupForm.querySelector('#description-id');
+
+const nameField = pageBody.querySelector('.profile__name');
+const jobField = pageBody.querySelector('.profile__description');
+
+const placeInput = addPopupForm.querySelector('#place-id');
+const urlInput = addPopupForm.querySelector('#url-id');
+
+const placeField = pageBody.querySelector('.places__name');
+const urlField = pageBody.querySelector('.places__image');
 
 // Добавление карточек на страницу
 const initialCards = [
@@ -61,9 +72,10 @@ renderCards();
 // Создаем отдельную карточку
 function createCard(name, link) {
   const cardElement = cardTemplate.cloneNode(true);
+  const cardElementImage = cardElement.querySelector('.places__image');
 
-  cardElement.querySelector('.places__image').src = link;
-  cardElement.querySelector('.places__image').alt = name;
+  cardElementImage.src = link;
+  cardElementImage.alt = name;
   cardElement.querySelector('.places__name').textContent = name;
 
   initCard(cardElement.querySelector('.places__item'));
@@ -95,21 +107,21 @@ function initCard(el) {
 }
 
 // Открытие попапа
-function popupOpener(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_shown');
 }
 
 // Закрытие попапа
-function popupCloser(popup) {
+function closePopoup(popup) {
   popup.classList.remove('popup_shown');
 }
 
 // Закрытие попапа по Escape
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
-    popupCloser(addPopup);
-    popupCloser(imagePopup);
-    popupCloser(editPopup);
+    closePopoup(addPopup);
+    closePopoup(imagePopup);
+    closePopoup(editPopup);
   }
 });
 
@@ -117,19 +129,13 @@ document.addEventListener('keydown', function(event) {
 document.addEventListener('click', function(evt) {
   if (evt.target.classList.contains('popup__flex')) {
     const currentPopup = evt.target.closest('.popup');
-    popupCloser(currentPopup);
+    closePopoup(currentPopup);
   }
 });
 
 //Обработка Edit popup
-const nameInput = editPopupForm.querySelector('#name-id');
-const jobInput = editPopupForm.querySelector('#description-id');
-
-const nameField = pageBody.querySelector('.profile__name');
-const jobField = pageBody.querySelector('.profile__description');
-
 function editPopupOpenHandler() {
-  popupOpener(editPopup);
+  openPopup(editPopup);
 
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;
@@ -137,46 +143,41 @@ function editPopupOpenHandler() {
 
 
 function editFormSubmitHandler(evt) {
-  debugger
   evt.preventDefault();
 
   nameField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
 
-  popupCloser(editPopup);
+  closePopoup(editPopup);
 }
 
 editPopupForm.addEventListener('submit', editFormSubmitHandler);
 openEditPopup.addEventListener('click', editPopupOpenHandler);
-closeEditPopup.addEventListener('click', () => popupCloser(editPopup));
+closeEditPopup.addEventListener('click', () => closePopoup(editPopup));
 
 
 //Обработка Add popup
-const placeInput = addPopupForm.querySelector('#place-id');
-const urlInput = addPopupForm.querySelector('#url-id');
-
-const placeField = pageBody.querySelector('.places__name');
-const urlField = pageBody.querySelector('.places__image');
-
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
 
   addCard(createCard(placeInput.value, urlInput.value));
 
-  popupCloser(addPopup);
+  closePopoup(addPopup);
+  addPopupForm.reset();
+  evt.target.querySelector('.popup__submit').classList.add('popup__submit_disabled');
 }
 
 addPopupForm.addEventListener('submit', addFormSubmitHandler);
-openAddPopup.addEventListener('click', () => popupOpener(addPopup));
-closeAddPopup.addEventListener('click', () => popupCloser(addPopup));
+openAddPopup.addEventListener('click', () => openPopup(addPopup));
+closeAddPopup.addEventListener('click', () => closePopoup(addPopup));
 
 
 // Обработка Image popup
 function imagePopupOpenHandler(el) {
-  popupOpener(imagePopup);
+  openPopup(imagePopup);
   popupImg.src = el.querySelector(".places__image").src;
   popupCaption.textContent = el.querySelector(".places__name").textContent;
   popupImg.alt = el.querySelector(".places__name").textContent;
 }
 
-closeImagePopup.addEventListener('click', () => popupCloser(imagePopup));
+closeImagePopup.addEventListener('click', () => closePopoup(imagePopup));

@@ -1,10 +1,14 @@
-const showInputError = (formElement, inputElement, errorElement, inputErrorClass, errorClass) => {
+/*При открытии попапа Добавить новое место в соответствии с макетом только кнопка submit должна быть отображена с классом
+'popup__submit_disabled'
+Валидация полей должна производиться во время ввода данных*/
+
+const showInputError = (inputElement, errorElement, inputErrorClass, errorClass) => {
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(errorClass);
 };
 
-const hideInputError = (formElement, inputElement, errorElement, inputErrorClass, errorClass) => {
+const hideInputError = (inputElement, errorElement, inputErrorClass, errorClass) => {
   inputElement.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
   errorElement.textContent = '';
@@ -14,13 +18,12 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, errorElement, inputErrorClass, errorClass);
+    showInputError(inputElement, errorElement, inputErrorClass, errorClass);
 
   } else {
-    hideInputError(formElement, inputElement, errorElement, inputErrorClass, errorClass);
+    hideInputError(inputElement, errorElement, inputErrorClass, errorClass);
   }
 };
-
 
 const hasInvalidInput = (inputList) => {
   return inputList.some(inputElement => {
