@@ -1,7 +1,3 @@
-/*При открытии попапа Добавить новое место в соответствии с макетом только кнопка submit должна быть отображена с классом
-'popup__submit_disabled'
-Валидация полей должна производиться во время ввода данных*/
-
 const showInputError = (inputElement, errorElement, inputErrorClass, errorClass) => {
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = inputElement.validationMessage;
@@ -53,6 +49,15 @@ const setEventListeners = (formElement, inputErrorClass, errorClass, inputSelect
   formElement.addEventListener('submit', (event) => {
     event.preventDefault();
   });
+
+  formElement.addEventListener('open', (event) => {
+    inputList.forEach(inputElement => {
+      const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+      hideInputError(inputElement, errorElement, inputErrorClass, errorClass);
+    });
+    toggleButtonState(formElement, inputList, submitButtonSelector, inactiveButtonClass);
+  });
+
 
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
 

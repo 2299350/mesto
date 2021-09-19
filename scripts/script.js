@@ -111,8 +111,15 @@ function openPopup(popup) {
   popup.classList.add('popup_shown');
 }
 
+function openPopupForm(popup) {
+  openPopup(popup);
+  const popupForm = popup.querySelector('.popup__form');
+  popupForm.dispatchEvent(new Event('open'));
+}
+
 // Закрытие попапа
 function closePopoup(popup) {
+
   popup.classList.remove('popup_shown');
 }
 
@@ -135,10 +142,9 @@ document.addEventListener('click', function(evt) {
 
 //Обработка Edit popup
 function editPopupOpenHandler() {
-  openPopup(editPopup);
-
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;
+  openPopupForm(editPopup);
 }
 
 
@@ -157,6 +163,12 @@ closeEditPopup.addEventListener('click', () => closePopoup(editPopup));
 
 
 //Обработка Add popup
+function addPopupOpenHandler() {
+  addPopupForm.reset();
+  openPopupForm(addPopup);
+}
+
+
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
 
@@ -168,7 +180,7 @@ function addFormSubmitHandler(evt) {
 }
 
 addPopupForm.addEventListener('submit', addFormSubmitHandler);
-openAddPopup.addEventListener('click', () => openPopup(addPopup));
+openAddPopup.addEventListener('click', addPopupOpenHandler);
 closeAddPopup.addEventListener('click', () => closePopoup(addPopup));
 
 
