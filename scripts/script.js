@@ -108,6 +108,7 @@ function initCard(el) {
 
 // Открытие попапа
 function openPopup(popup) {
+  document.addEventListener('keydown', closePopupByEscape);
   popup.classList.add('popup_shown');
 }
 
@@ -118,25 +119,27 @@ function openPopupForm(popup) {
 }
 
 // Закрытие попапа
-function closePopoup(popup) {
-
+function closePopup(popup) {
   popup.classList.remove('popup_shown');
+  document.removeEventListener('keydown', closePopupByEscape);
+
 }
 
 // Закрытие попапа по Escape
-document.addEventListener('keydown', function(event) {
+function closePopupByEscape (event) {
   if (event.key === 'Escape') {
-    closePopoup(addPopup);
-    closePopoup(imagePopup);
-    closePopoup(editPopup);
+    closePopup(addPopup);
+    closePopup(imagePopup);
+    closePopup(editPopup);
   }
-});
+}
 
 // Закрытие попапа по клику вне области
 document.addEventListener('click', function(evt) {
-  if (evt.target.classList.contains('popup__flex')) {
+  const isClickedOnOverlay = evt.target.classList.contains('popup__flex');
+  if (isClickedOnOverlay) {
     const currentPopup = evt.target.closest('.popup');
-    closePopoup(currentPopup);
+    closePopup(currentPopup);
   }
 });
 
@@ -154,12 +157,12 @@ function editFormSubmitHandler(evt) {
   nameField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
 
-  closePopoup(editPopup);
+  closePopup(editPopup);
 }
 
 editPopupForm.addEventListener('submit', editFormSubmitHandler);
 openEditPopup.addEventListener('click', editPopupOpenHandler);
-closeEditPopup.addEventListener('click', () => closePopoup(editPopup));
+closeEditPopup.addEventListener('click', () => closePopup(editPopup));
 
 
 //Обработка Add popup
@@ -174,14 +177,14 @@ function addFormSubmitHandler(evt) {
 
   addCard(createCard(placeInput.value, urlInput.value));
 
-  closePopoup(addPopup);
+  closePopup(addPopup);
   addPopupForm.reset();
   evt.target.querySelector('.popup__submit').classList.add('popup__submit_disabled');
 }
 
 addPopupForm.addEventListener('submit', addFormSubmitHandler);
 openAddPopup.addEventListener('click', addPopupOpenHandler);
-closeAddPopup.addEventListener('click', () => closePopoup(addPopup));
+closeAddPopup.addEventListener('click', () => closePopup(addPopup));
 
 
 // Обработка Image popup
@@ -192,4 +195,4 @@ function imagePopupOpenHandler(el) {
   popupImg.alt = el.querySelector(".places__name").textContent;
 }
 
-closeImagePopup.addEventListener('click', () => closePopoup(imagePopup));
+closeImagePopup.addEventListener('click', () => closePopup(imagePopup));
