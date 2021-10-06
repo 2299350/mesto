@@ -196,3 +196,9 @@ function imagePopupOpenHandler(el) {
 }
 
 closeImagePopup.addEventListener('click', () => closePopup(imagePopup));
+
+
+export function exportFunction() {
+  console.log('Заимпортили');
+  const number = 5;
+}
