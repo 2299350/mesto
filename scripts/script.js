@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+
 const pageBody = document.querySelector('.page-body');
 
 const editPopup = pageBody.querySelector('#edit-popup-id');
@@ -63,14 +65,14 @@ const initialCards = [
 // Создаем карточки из массива
 function renderCards(cards = initialCards) {
   cards.reverse().forEach(function (element) {
-    addCard(createCard(element.name, element.link));
+    addCard(new Card(element.name, element.link));
   })
 }
 
 renderCards();
 
 // Создаем отдельную карточку
-function createCard(name, link) {
+/*function createCard(name, link) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardElementImage = cardElement.querySelector('.places__image');
 
@@ -80,11 +82,11 @@ function createCard(name, link) {
 
   initCard(cardElement.querySelector('.places__item'));
   return cardElement;
-}
+}*/
 
 // Добавляем отдельную карточку
-function addCard(cardElement) {
-  placesList.prepend(cardElement);
+function addCard(card) {
+  placesList.prepend(card.renderCard());
 }
 
 //Лисенеры для карточек
