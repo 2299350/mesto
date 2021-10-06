@@ -14,20 +14,31 @@ export default class Card {
 
   _getTemplate() {
     const cardElement = cardTemplate.cloneNode(true);
-
     return cardElement;
   }
 
-  renderCard() {
-    const element = this._getTemplate();
-    /*super._setEventListeners();*/
+  _setEventListeners() {
+    const placesLike = this._element.querySelector('.places__like');
+    placesLike.addEventListener("click", (event) => {
+      event.target.classList.toggle('places__like_active');
+    });
+  }
 
-    const cardElementImage = element.querySelector('.places__image');
+
+
+
+
+  renderCard() {
+    this._element = this._getTemplate();
+
+    this._setEventListeners();
+
+    const cardElementImage = this._element.querySelector('.places__image');
     cardElementImage.src = this._link;
     cardElementImage.alt = this._name;
-    element.querySelector('.places__name').textContent = this._name;
+    this._element.querySelector('.places__name').textContent = this._name;
 
-    return element;
+    return this._element;
   }
 }
 
