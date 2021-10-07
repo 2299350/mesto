@@ -190,7 +190,7 @@ closeAddPopup.addEventListener('click', () => closePopup(addPopup));
 
 
 // Обработка Image popup
-function imagePopupOpenHandler(el) {
+export function imagePopupOpenHandler(el) {
   openPopup(imagePopup);
   popupImg.src = el.querySelector(".places__image").src;
   popupCaption.textContent = el.querySelector(".places__name").textContent;
@@ -198,9 +198,3 @@ function imagePopupOpenHandler(el) {
 }
 
 closeImagePopup.addEventListener('click', () => closePopup(imagePopup));
-
-
-export function exportFunction() {
-  console.log('Заимпортили');
-  const number = 5;
-}
