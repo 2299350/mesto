@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const pageBody = document.querySelector('.page-body');
 
@@ -71,41 +72,9 @@ function renderCards(cards = initialCards) {
 
 renderCards();
 
-// Создаем отдельную карточку
-/*function createCard(name, link) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardElementImage = cardElement.querySelector('.places__image');
-
-  cardElementImage.src = link;
-  cardElementImage.alt = name;
-  cardElement.querySelector('.places__name').textContent = name;
-
-  initCard(cardElement.querySelector('.places__item'));
-  return cardElement;
-}*/
-
 // Добавляем отдельную карточку
 function addCard(card) {
   placesList.prepend(card.renderCard());
-}
-
-//Лисенеры для карточек
-function initCard(el) {
-  const placesLike = el.querySelector('.places__like');
-  const placesRemove = el.querySelector('.places__remove');
-  const placesImage = el.querySelector('.popup__image-button');
-
-  placesRemove.addEventListener("click", function() {
-    el.remove();
-  });
-
-  placesLike.addEventListener("click", likeDislike);
-
-  function likeDislike() {
-    this.classList.toggle('places__like_active');
-  }
-
-  placesImage.addEventListener("click", () => imagePopupOpenHandler(el));
 }
 
 // Открытие попапа
@@ -177,7 +146,7 @@ function addPopupOpenHandler() {
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
 
-  addCard(createCard(placeInput.value, urlInput.value));
+  addCard(new Card(placeInput.value, urlInput.value));
 
   closePopup(addPopup);
   addPopupForm.reset();

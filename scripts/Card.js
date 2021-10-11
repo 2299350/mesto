@@ -18,17 +18,9 @@ export default class Card {
     const placesRemove = this._element.querySelector('.places__remove');
     const placesImage = this._element.querySelector('.popup__image-button');
 
-    console.log(this._element);
-
     placesLike.addEventListener("click", (event) => {
       event.target.classList.toggle('places__like_active');
     });
-
-    /*placesImage.addEventListener("click", () => {
-      debugger
-      const v = this._element.querySelector('.places__item');
-      imagePopupOpenHandler(v);
-    });*/
 
     placesImage.addEventListener("click", () => {
       imagePopupOpenHandler(this._element);
@@ -38,10 +30,6 @@ export default class Card {
       this._element.remove();
     });
   }
-
-
-
-
 
   renderCard() {
     this._element = this._getTemplate();
