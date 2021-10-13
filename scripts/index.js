@@ -35,6 +35,22 @@ const urlInput = addPopupForm.querySelector('#url-id');
 const placeField = pageBody.querySelector('.places__name');
 const urlField = pageBody.querySelector('.places__image');
 
+const popupConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+//Добавляем лисенеры на валидацию
+const addFormValidator = new FormValidator(popupConfig, addPopupForm);
+const editFormValidator = new FormValidator(popupConfig, editPopupForm);
+
+addFormValidator.enableValidation();
+editFormValidator.enableValidation();
+
 // Добавление карточек на страницу
 const initialCards = [
   {

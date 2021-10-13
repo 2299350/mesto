@@ -1,6 +1,6 @@
 const cardTemplate = document.querySelector('#card-template').content;
 
-import {imagePopupOpenHandler} from './script.js';
+import {imagePopupOpenHandler} from './index.js';
 
 export default class Card {
   constructor(name, link) {
