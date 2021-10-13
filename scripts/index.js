@@ -1,3 +1,6 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const pageBody = document.querySelector('.page-body');
 
 const editPopup = pageBody.querySelector('#edit-popup-id');
@@ -32,6 +35,22 @@ const urlInput = addPopupForm.querySelector('#url-id');
 const placeField = pageBody.querySelector('.places__name');
 const urlField = pageBody.querySelector('.places__image');
 
+const popupConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+//Добавляем лисенеры на валидацию
+const addFormValidator = new FormValidator(popupConfig, addPopupForm);
+const editFormValidator = new FormValidator(popupConfig, editPopupForm);
+
+addFormValidator.enableValidation();
+editFormValidator.enableValidation();
+
 // Добавление карточек на страницу
 const initialCards = [
   {
@@ -63,47 +82,15 @@ const initialCards = [
 // Создаем карточки из массива
 function renderCards(cards = initialCards) {
   cards.reverse().forEach(function (element) {
-    addCard(createCard(element.name, element.link));
+    addCard(new Card(element.name, element.link));
   })
 }
 
 renderCards();
 
-// Создаем отдельную карточку
-function createCard(name, link) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardElementImage = cardElement.querySelector('.places__image');
-
-  cardElementImage.src = link;
-  cardElementImage.alt = name;
-  cardElement.querySelector('.places__name').textContent = name;
-
-  initCard(cardElement.querySelector('.places__item'));
-  return cardElement;
-}
-
 // Добавляем отдельную карточку
-function addCard(cardElement) {
-  placesList.prepend(cardElement);
-}
-
-//Лисенеры для карточек
-function initCard(el) {
-  const placesLike = el.querySelector('.places__like');
-  const placesRemove = el.querySelector('.places__remove');
-  const placesImage = el.querySelector('.popup__image-button');
-
-  placesRemove.addEventListener("click", function() {
-    el.remove();
-  });
-
-  placesLike.addEventListener("click", likeDislike);
-
-  function likeDislike() {
-    this.classList.toggle('places__like_active');
-  }
-
-  placesImage.addEventListener("click", () => imagePopupOpenHandler(el));
+function addCard(card) {
+  placesList.prepend(card.renderCard());
 }
 
 // Открытие попапа
@@ -175,7 +162,7 @@ function addPopupOpenHandler() {
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
 
-  addCard(createCard(placeInput.value, urlInput.value));
+  addCard(new Card(placeInput.value, urlInput.value));
 
   closePopup(addPopup);
   addPopupForm.reset();
@@ -188,7 +175,7 @@ closeAddPopup.addEventListener('click', () => closePopup(addPopup));
 
 
 // Обработка Image popup
-function imagePopupOpenHandler(el) {
+export function imagePopupOpenHandler(el) {
   openPopup(imagePopup);
   popupImg.src = el.querySelector(".places__image").src;
   popupCaption.textContent = el.querySelector(".places__name").textContent;
