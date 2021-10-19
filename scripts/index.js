@@ -82,7 +82,9 @@ const initialCards = [
 // Создаем карточки из массива
 function renderCards(cards = initialCards) {
   cards.reverse().forEach(function (element) {
-    addCard(new Card(element.name, element.link));
+    const card = new Card(element.name, element.link, cardTemplate);
+    const cardElement = card.renderCard();
+    addCard(cardElement);
   })
 }
 
@@ -90,7 +92,7 @@ renderCards();
 
 // Добавляем отдельную карточку
 function addCard(card) {
-  placesList.prepend(card.renderCard());
+  placesList.prepend(card);
 }
 
 // Открытие попапа
@@ -115,9 +117,8 @@ function closePopup(popup) {
 // Закрытие попапа по Escape
 function closePopupByEscape (event) {
   if (event.key === 'Escape') {
-    closePopup(addPopup);
-    closePopup(imagePopup);
-    closePopup(editPopup);
+    const openedPopup = document.querySelector('.popup_shown');
+    closePopup(openedPopup);
   }
 }
 
@@ -162,11 +163,10 @@ function addPopupOpenHandler() {
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
 
-  addCard(new Card(placeInput.value, urlInput.value));
+  addCard(new Card(placeInput.value, urlInput.value, cardTemplate).renderCard());
 
   closePopup(addPopup);
   addPopupForm.reset();
-  evt.target.querySelector('.popup__submit').classList.add('popup__submit_disabled');
 }
 
 addPopupForm.addEventListener('submit', addFormSubmitHandler);

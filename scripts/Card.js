@@ -1,15 +1,15 @@
-const cardTemplate = document.querySelector('#card-template').content;
 
 import {imagePopupOpenHandler} from './index.js';
 
 export default class Card {
-  constructor(name, link) {
+  constructor(name, link, cardTemplate) {
     this._name = name;
     this._link = link;
+    this._cardTemplate = cardTemplate;
   }
 
   _getTemplate() {
-    const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
+    const cardElement = this._cardTemplate.querySelector('.places__item').cloneNode(true);
     return cardElement;
   }
 
