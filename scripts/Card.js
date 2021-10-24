@@ -31,7 +31,7 @@ export default class Card {
     });
   }
 
-  renderCard() {
+  createDomElement() {
     this._element = this._getTemplate();
 
     this._setEventListeners();

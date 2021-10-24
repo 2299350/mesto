@@ -79,11 +79,15 @@ const initialCards = [
   }
 ];
 
+function createCard({name, link}) {
+  const card = new Card(name, link, cardTemplate);
+  return card.createDomElement();
+}
+
 // Создаем карточки из массива
 function renderCards(cards = initialCards) {
   cards.reverse().forEach(function (element) {
-    const card = new Card(element.name, element.link, cardTemplate);
-    const cardElement = card.renderCard();
+    const cardElement = createCard(element);
     addCard(cardElement);
   })
 }
@@ -162,8 +166,10 @@ function addPopupOpenHandler() {
 
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
-
-  addCard(new Card(placeInput.value, urlInput.value, cardTemplate).renderCard());
+  addCard(createCard({
+    name: placeInput.value,
+    link: urlInput.value,
+  }));
 
   closePopup(addPopup);
   addPopupForm.reset();
