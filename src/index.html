@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+  </head>
+
+  <body class="page-body">
+    <div class="page">
+      <header class="header">
+        <img class="header__logo" alt="Место Россия" />
+      </header>
+
+      <main class="main">
+        <section class="profile">
+          <img alt="Фото пользователя" class="profile__photo" />
+          <div class="profile__info">
+            <div class="profile__name-container">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button
+                type="button"
+                class="profile__edit-button hover-action"
+                aria-label="Открыть окно редактирования профиля"
+              ></button>
+            </div>
+            <p class="profile__description">Исследователь океана</p>
+          </div>
+          <button
+            type="button"
+            class="profile__add-button hover-action"
+            aria-label="Добавить место"
+          ></button>
+        </section>
+
+        <section class="places">
+          <ul class="places__list"></ul>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__text">&copy; 2021 Алексей Лицман</p>
+      </footer>
+    </div>
+
+    <div class="popup" id="edit-popup-id">
+      <div class="popup__flex">
+        <div class="popup__wrapper">
+          <form
+            action="https://2299350.github.io/"
+            method="get"
+            class="popup__form popup__form_edit"
+            name="profile-form"
+            id="profile-form-id"
+          >
+            <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
+            <h2 class="popup__header">Редактировать профиль</h2>
+            <div class="popup__input-wrapper">
+              <input
+                class="popup__input"
+                type="text"
+                name="name"
+                id="name-id"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="popup__error" id="name-id-error"></span>
+            </div>
+            <div class="popup__input-wrapper">
+              <input
+                class="popup__input"
+                type="text"
+                name="description"
+                id="description-id"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="popup__error" id="description-id-error"></span>
+            </div>
+            <button type="submit" class="popup__submit">Сохранить</button>
+          </form>
+          <button
+            type="button"
+            class="popup__close-button hover-action"
+            aria-label="Закрыть окно редактирования профиля"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup" id="add-popup-id">
+      <div class="popup__flex">
+        <div class="popup__wrapper">
+          <form
+            action="https://2299350.github.io/"
+            method="get"
+            class="popup__form popup__form_add"
+            name="card-form"
+            id="card-form-id"
+          >
+            <!--https://2299350.github.io/ добавил чтобы пройти валидатор-->
+            <h2 class="popup__header">Новое место</h2>
+            <div class="popup__input-wrapper">
+              <input
+                class="popup__input"
+                placeholder="Название"
+                type="text"
+                name="place"
+                id="place-id"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="popup__error" id="place-id-error"
+                >Вы пропустили это поле. Вы пропустили это поле. Вы пропустили
+                это поле. Вы пропустили это поле.</span
+              >
+            </div>
+            <div class="popup__input-wrapper">
+              <input
+                class="popup__input"
+                placeholder="Ссылка на картинку"
+                type="url"
+                name="url"
+                id="url-id"
+                required
+              />
+              <span class="popup__error" id="url-id-error"
+                >Вы пропустили это поле.</span
+              >
+            </div>
+            <button type="submit" class="popup__submit popup__submit_disabled">
+              Создать
+            </button>
+          </form>
+          <button
+            type="button"
+            class="popup__close-button hover-action"
+            aria-label="Закрыть окно добавления карточки"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup" id="image-popup-id">
+      <div class="popup__flex">
+        <div class="popup__container">
+          <figure class="popup__wrapper popup__wrapper_image">
+            <img class="popup__image" src="#" alt="#" />
+            <figcaption class="popup__caption"></figcaption>
+          </figure>
+          <button
+            type="button"
+            class="popup__close-button hover-action"
+            aria-label="Закрыть изображение"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <template id="card-template">
+      <li class="places__item">
+        <button
+          type="button"
+          class="places__remove"
+          aria-label="Удалить место"
+        ></button>
+        <button class="popup__image-button">
+          <img src="#" alt="#" class="places__image" />
+        </button>
+        <div class="places__name-container">
+          <h2 class="places__name"></h2>
+          <button
+            type="button"
+            class="places__like"
+            aria-label="Лайкнуть место"
+          ></button>
+        </div>
+      </li>
+    </template>
+  </body>
+</html>
